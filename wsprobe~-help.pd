@@ -1,0 +1,73 @@
+#N canvas 320 121 540 382 10;
+#X msg 390 18 \; pd dsp 1;
+#X msg 390 64 \; pd dsp 0;
+#X obj 30 168 adc~;
+#X obj 29 226 *~;
+#X obj 44 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 70 226 *~;
+#X obj 85 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 122 226 *~;
+#X obj 137 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 71 168 noise~;
+#X obj 123 168 osc~ 2750;
+#X obj 243 226 *~;
+#X obj 258 199 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 244 168 phasor~ 100;
+#X obj 242 281 bp~ 1000 10;
+#X text 397 295 <= ~12 msecs;
+#X msg 350 295 512;
+#X msg 349 191 8192;
+#X text 396 191 <= ~190 msecs;
+#X text 396 217 <= ~93 msecs;
+#X msg 349 217 4096;
+#X msg 349 242 2048;
+#X text 396 242 <= ~46 msecs;
+#X msg 350 268 1024;
+#X text 397 269 <= ~23 msecs;
+#X text 346 165 Override Window/Block Size;
+#X text 136 16 - WAVEFORM/SPECTRUM DISPLAY PROBE;
+#X obj 264 334 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 248 315 Snapshot;
+#X text 27 55 wsprobe~ takes an audio input signal and \, when opened
+\, displays a pane showing a waveform and a spectrum. It is possible
+to select a 6dB/octave spectral lift (important for speech signals)
+and wideband/narrowband frequency analysis. It is also possible to
+switch it to take snapshots.;
+#X obj 192 168 dirac~;
+#X obj 192 141 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 213 139 <= impulse;
+#X obj 242 354 wsprobe~;
+#X obj 29 353 wsprobe~;
+#X obj 77 18 wsprobe~;
+#X connect 2 0 3 0;
+#X connect 3 0 34 0;
+#X connect 4 0 3 1;
+#X connect 5 0 14 0;
+#X connect 5 0 34 0;
+#X connect 6 0 5 1;
+#X connect 7 0 14 0;
+#X connect 7 0 34 0;
+#X connect 8 0 7 1;
+#X connect 9 0 5 0;
+#X connect 10 0 7 0;
+#X connect 11 0 14 0;
+#X connect 11 0 34 0;
+#X connect 12 0 11 1;
+#X connect 13 0 11 0;
+#X connect 14 0 33 0;
+#X connect 16 0 33 2;
+#X connect 17 0 33 2;
+#X connect 20 0 33 2;
+#X connect 21 0 33 2;
+#X connect 23 0 33 2;
+#X connect 27 0 33 1;
+#X connect 30 0 14 0;
+#X connect 30 0 34 0;
+#X connect 31 0 30 0;
+#X connect 31 0 27 0;
