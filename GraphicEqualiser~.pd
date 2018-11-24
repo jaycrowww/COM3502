@@ -1,0 +1,131 @@
+#N canvas 766 404 633 269 10;
+#X obj 29 223 outlet~;
+#N canvas 966 151 455 494 fft-analysis 0;
+#X obj 15 71 *~;
+#X obj 15 13 inlet~;
+#X obj 15 102 rfft~;
+#X obj 30 43 tabreceive~ \$0-hann;
+#X obj 15 316 *~;
+#X obj 48 316 *~;
+#X obj 72 13 block~ 512 4;
+#X obj 82 171 tabreceive~ \$0-gain;
+#X obj 76 225 *~;
+#X obj 15 411 *~;
+#X obj 30 383 tabreceive~ \$0-hann;
+#X obj 71 280 /~ 768;
+#X obj 71 251 *~;
+#X obj 15 352 rifft~;
+#X obj 15 444 outlet~;
+#X obj 82 198 clip~ 0 1;
+#X text 156 42 <= window the incoming block;
+#X text 58 101 <= compute the FFT;
+#X text 209 170 <= get the gain profile;
+#X text 148 197 <= ignore values outside the range;
+#X text 104 237 <= quartic scaling for easy editing;
+#X text 119 279 <= normalise by 512 x 3/2;
+#X text 75 314 <= modify the real and imaginary amplitudes;
+#X text 62 350 <= compute the inverse FFT;
+#X text 159 382 <= window the result;
+#X text 157 11 <= blocks of 512 samples at intervals of 128;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 4 0;
+#X connect 2 1 5 0;
+#X connect 3 0 0 1;
+#X connect 4 0 13 0;
+#X connect 5 0 13 1;
+#X connect 7 0 15 0;
+#X connect 8 0 12 0;
+#X connect 8 0 12 1;
+#X connect 9 0 14 0;
+#X connect 10 0 9 1;
+#X connect 11 0 4 1;
+#X connect 11 0 5 1;
+#X connect 12 0 11 0;
+#X connect 13 0 9 0;
+#X connect 15 0 8 0;
+#X connect 15 0 8 1;
+#X restore 29 182 pd fft-analysis;
+#X obj 529 237 s \$0-gain;
+#X obj 528 136 loadbang;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-gain 256 float 1;
+#A 0 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9
+0.9 0.9;
+#X coords 0 1 255 -0.01 512 60 1;
+#X restore 19 36 graph;
+#X text 5 87 0;
+#X text 5 27 1;
+#X text 250 3 GAIN;
+#X text 16 97 0 Hz;
+#X text 500 99 22 KHz;
+#X obj 411 12 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -262144
+-1;
+#X text 433 10 <= RESET;
+#X obj 29 145 inlet~;
+#X text 166 17 (click and drag curve with mouse);
+#N canvas 984 211 412 287 Hann-window 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-hann 512 float 0;
+#X coords 0 1 511 0 200 120 1;
+#X restore 184 42 graph;
+#X msg 126 126 0;
+#X obj 20 175 osc~;
+#X obj 20 127 samplerate~;
+#X obj 20 198 *~ -0.5;
+#X obj 20 221 +~ 0.5;
+#X obj 12 246 tabwrite~ \$0-hann;
+#X text 170 34 1;
+#X text 163 152 0;
+#X text 179 165 0;
+#X obj 20 151 / 512;
+#X obj 12 104 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X text 249 15 Hann window;
+#X text 68 173 period 512;
+#X obj 12 9 loadbang;
+#X msg 34 42 \; pd dsp 1;
+#X text 365 168 511;
+#X connect 1 0 2 1;
+#X connect 2 0 4 0;
+#X connect 3 0 10 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 10 0 2 0;
+#X connect 11 0 3 0;
+#X connect 11 0 1 0;
+#X connect 11 0 6 0;
+#X connect 14 0 11 0;
+#X connect 14 0 15 0;
+#X restore 91 146 pd Hann-window;
+#X text 265 99 11 KHz;
+#X text 127 98 5.5 KHz;
+#X text 381 99 16.5 KHz;
+#X text 189 145 <= precompute Hanning window;
+#X text 131 180 <= scale the spectrum;
+#X obj 554 10 inlet;
+#X obj 531 184 f \$1;
+#X msg 529 209 const \$1;
+#X msg 530 158 0.9;
+#X connect 1 0 0 0;
+#X connect 10 0 21 0;
+#X connect 12 0 1 0;
+#X connect 20 0 10 0;
+#X connect 21 0 22 0;
+#X connect 22 0 2 0;
+#X connect 23 0 21 0;
+#X coords 0 -1 1 1 540 120 1 0 0;
