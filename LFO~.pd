@@ -1,6 +1,6 @@
-#N canvas 1081 81 828 740 10;
+#N canvas 382 114 828 740 10;
 #X obj 297 337 hsl 128 15 0 1 0 0 empty empty DEPTH 50 8 0 10 -262144
--1 -1 0 1;
+-1 -1 12700 1;
 #X floatatom 456 337 5 0 0 0 - - -;
 #X obj 72 326 *~;
 #X obj 359 -65 loadbang;
@@ -30,8 +30,8 @@
 #X obj 73 244 clip~ -1 1;
 #X obj 455 -3 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 296 249 hsl 128 15 0 50 0 0 empty empty SPEED 50 8 0 10 -262144
--1 -1 0 1;
+#X obj 301 249 hsl 128 15 0 50 0 0 empty empty SPEED 50 8 0 10 -262144
+-1 -1 2540 1;
 #X obj 195 262 inlet;
 #X obj 218 350 inlet;
 #X floatatom 501 72 5 0 0 0 - - -;
@@ -59,6 +59,7 @@
 #X obj 96 92 r \$0-i;
 #X obj 152 53 == 0;
 #X obj 152 94 spigot;
+#X text 138 23 if speed = 0 \, then do not alter audio;
 #X connect 0 0 40 0;
 #X connect 1 0 7 0;
 #X connect 2 0 16 0;
